@@ -1,10 +1,19 @@
 
-USE Bamazon;
--- BASIC SYNTAX TEMPLATE --
--- INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("", "" , 5.00 , 20); --
+USE Products;
 
-INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("Bacon Strainer", "Useless Things" , 15.00 , 125);
-INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("Trampoline", "Outdoors" , 100.00 , 30);
+CREATE TABLE Products(
+productN NAME  VARCHAR (30),
+departmentName VARCHAR (30),
+price INTEGER (100),
+stockQuantity INTEGER(100)
+	
+);
+
+\
+INSERT INTO triangle (sidea, sideb) VALUES(1,1),(3,4),(6,8);
+
+INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("ball", "Useless Things" , 15.00 , 125);
+INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("boat", "Outdoors" , 100.00 , 30);
 INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("Sundress", "Clothing" , 25.00 , 150);
 INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("Shorts", "Clothing" , 25.00 , 200);
 INSERT INTO Products (productName,departmentName,price,stockQuantity) VALUES ("Googly Eyes", "Useless Things" , 1.00 , 500);

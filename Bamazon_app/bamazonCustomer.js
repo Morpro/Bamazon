@@ -1,13 +1,12 @@
-// bamazon - Yamil Morales
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 
 
 var connection = mysql.createConnection({
     host: "localhost",
-    port: 3306,
+    port: 8889,
     user: "root",
-    password: "password",
+    password: "root",
     database: "bamazon"
 })
 
@@ -20,7 +19,7 @@ var displayProducts = function() {
   var query = 'SELECT * FROM Products'
   connection.query(query, function(err, res) {
       for (var i = 0; i < res.length; i++) {
-          console.log("Item ID: " + res[i].itemID + " || Product: " + res[i].productName + " || Department: " + res[i].productDepartment + " || Price: " + res[i].price + " || Stock: " + res[i].stockQuantity);
+          console.log("Item ID: " + res[i].id + " || Product: " + res[i].productNAME + " || Department: " + res[i].departmentName + " || Price: " + res[i].price + " || Stock: " + res[i].stockQuantity);
       }
       shoppingCart();
     })
@@ -31,14 +30,7 @@ var shoppingCart = function() {
         name: "ProductID",
         type: "input",
         message: "What is the ID of the product you would like to purchase?",
-        //Validate: checks weather or not the user typed a response
-        validate: function(value) {
-            if (isNaN(value) == false) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        
     }, {
         name: "Quantity",
         type: "input",
@@ -52,12 +44,12 @@ var shoppingCart = function() {
         }
     }]).then(function(answer) {
 
-     var query = 'SELECT * FROM Products WHERE itemID=' + answer.Quantity;
+     var query = 'SELECT * FROM Products WHERE itemID=Products' + answer.Quantity;
         connection.query(query, function(err, res) {
           if (answer.Quantity <= res) {
             for (var i = 0; i < res.length; i++) {
                 console.log("We currently have " + res[i].stockQuantity + " " + res[i].productName + ".");
-                console.log("Thank you for your patronage! Your order of "+ res[i].stockQuantity + " " + res[i].productName + " is now being processed.");
+                console.log("Thank you for your for your purchase! Your order of "+ res[i].stockQuantity + " " + res[i].productName + " is now being processed.");
               }
             } else {
               console.log("Not enough of this product in stock.");
